@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <ResourceCollection>
+    <Resources>
+      <Resource Name="UI/UIForms/MenuForm" LoadType="0" Packed="False" />
+    </Resources>
+    <Assets>
+      <Asset Guid="1a140fb58bc6bdc48826fe1a463304e2" ResourceName="UI/UIForms/MenuForm" />
+    </Assets>
+  </ResourceCollection>
+</UnityGameFramework>

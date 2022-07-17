@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <BuildReport>
+    <Summary>
+      <ProductName>Tank</ProductName>
+      <CompanyName>DefaultCompany</CompanyName>
+      <GameIdentifier>com.DefaultCompany.Tank</GameIdentifier>
+      <GameFrameworkVersion>2021.05.31</GameFrameworkVersion>
+      <UnityVersion>2020.3.24f1c2</UnityVersion>
+      <ApplicableGameVersion>0.1</ApplicableGameVersion>
+      <InternalResourceVersion>0</InternalResourceVersion>
+      <Platforms>Windows</Platforms>
+      <AssetBundleCompression>LZ4</AssetBundleCompression>
+      <CompressionHelperTypeName>UnityGameFramework.Runtime.DefaultCompressionHelper</CompressionHelperTypeName>
+      <AdditionalCompressionSelected>False</AdditionalCompressionSelected>
+      <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
+      <BuildEventHandlerTypeName>
+      </BuildEventHandlerTypeName>
+      <OutputDirectory>F:/UnityProject/Tank/ABs</OutputDirectory>
+      <BuildAssetBundleOptions>DeterministicAssetBundle, ChunkBasedCompression</BuildAssetBundleOptions>
+    </Summary>
+    <Resources Count="0" />
+  </BuildReport>
+</UnityGameFramework>
