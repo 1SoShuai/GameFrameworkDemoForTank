@@ -18,10 +18,6 @@ namespace Tank
             GameEntry.UI.OpenUIForm(AssetUtility.GetUIFormAsset("TankSelectForm"), "Default");
 
             GameEntry.Entity.ShowEntity<TankLogic>(5, AssetUtility.GetEntityAsset("Karl"), "Tanks",1,new TankData(5,1005) { });
-
-
-            GameEntry.Scene.LoadScene(AssetUtility.GetSceneAsset("Lobby"), 100, this);
-            GameEntry.Scene.UnloadScene(AssetUtility.GetSceneAsset("Menu"));
         }
     }
 }

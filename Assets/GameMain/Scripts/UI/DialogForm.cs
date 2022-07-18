@@ -18,6 +18,16 @@ namespace Tank
         [SerializeField]
         private Text header_txt, msg_txt;
 
+        protected override void OnOpen(object userData)
+        {
+            base.OnOpen(userData);
+
+            DialogFormData formData = userData as DialogFormData;
+
+            SetHeaderVal(formData.headVal);
+            SetBodyVal(formData.bodyVal);
+        }
+
         private void OnEnable()
         {
             btn_Close.onClick.AddListener(OnDialogClose);
@@ -33,7 +43,7 @@ namespace Tank
             header_txt.text = val;
         }
 
-        public void SetMgsVal(string msg)
+        public void SetBodyVal(string msg)
         {
             msg_txt.text = msg;
         }
@@ -42,5 +52,15 @@ namespace Tank
         {
             btn_Close.onClick.RemoveListener(OnDialogClose);
         }
+    }
+
+    /// <summary>
+    /// 对话框参数类
+    /// </summary>
+    public class DialogFormData
+    {
+        public string headVal;
+
+        public string bodyVal;
     }
 }

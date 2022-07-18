@@ -15,69 +15,54 @@ namespace Tank
     /// </summary>
     public class ProcedureChangeScene : ProcedureBase
     {
-        IFsm<IProcedureManager> procedure;
+        enum NextProcedure
+        {
+            Menu,
+            Lobby
+        }
+
+        private NextProcedure nextProcedure;
+
 
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
 
+            // 卸载所有场景
+            string[] loadedSceneAssetNames = GameEntry.Scene.GetLoadedSceneAssetNames();
+            for (int i = 0; i < loadedSceneAssetNames.Length; i++)
+            {
+                GameEntry.Scene.UnloadScene(loadedSceneAssetNames[i]);
+            }
+
+            //加载新场景
             int sceneId = procedureOwner.GetData<VarInt32>("NextSceneID");
+
+            nextProcedure = (NextProcedure)(sceneId - 1);
 
             IDataTable<DRScene> dtScene = GameEntry.DataTable.GetDataTable<DRScene>();
             DRScene drScene = dtScene.GetDataRow(sceneId);
 
             GameEntry.Scene.LoadScene(AssetUtility.GetSceneAsset(drScene.AssetName), this);
-
-            procedure = procedureOwner;
-
-            GameEntry.Event.Subscribe(LoginEventArgs.EventId, OnLoginFeedback);
-            GameEntry.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
         }
-
-        private void OnOpenUIFormSuccess(object sender, GameEventArgs e)
-        {
-            DialogForm dialogForm = GameEntry.UI.GetUIForm(AssetUtility.GetUIFormAsset("DialogForm")).Logic as DialogForm;
-            OpenUIFormSuccessEventArgs openArgs = e as OpenUIFormSuccessEventArgs;
-
-            if (dialogForm != null)
-            {
-                dialogForm.SetHeaderVal("Error");
-                dialogForm.SetMgsVal(openArgs.UserData.ToString());
-            }
-        }
-
-        /// <summary>
-        /// 登录反馈
-        /// </summary>
-        /// <param name="sender">事件发送者</param>
-        /// <param name="e">时间参数类</param>
-        private void OnLoginFeedback(object sender, GameEventArgs e)
-        {
-            LoginEventArgs login = e as LoginEventArgs;
-
-            if (login.loginResult)
-            {
-                GameEntry.UI.CloseUIForm(GameEntry.UI.GetUIForm(AssetUtility.GetUIFormAsset("MenuForm")));
-                ChangeState<ProcedureLobby>(procedure);
-            }
-            else
-            {
-                GameEntry.UI.OpenUIForm(AssetUtility.GetUIFormAsset("DialogForm"), "Default", login.errorMsg);
-            }
-        }
-
 
         protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+
+            if (nextProcedure == NextProcedure.Menu)
+            {
+                ChangeState<ProcedureMenu>(procedureOwner);
+            }
+            else if (nextProcedure == NextProcedure.Lobby)
+            {
+                ChangeState<ProcedureLobby>(procedureOwner);
+            }
         }
 
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-
-            GameEntry.Event.Unsubscribe(LoginEventArgs.EventId, OnLoginFeedback);
-            GameEntry.Event.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
         }
     }
 }

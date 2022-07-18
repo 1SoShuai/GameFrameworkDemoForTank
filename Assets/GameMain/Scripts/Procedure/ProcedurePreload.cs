@@ -23,7 +23,8 @@ namespace Tank
         {
             "Scene",
             "Entity",
-            "Music"
+            "Music",
+            "UIForm"
         };
 
         Dictionary<string, bool> loadFlags = new Dictionary<string, bool>();
@@ -36,10 +37,6 @@ namespace Tank
 
             GameEntry.Event.Subscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDatatableSuccess);
             GameEntry.Event.Subscribe(LoadDataTableFailureEventArgs.EventId, OnLoadDatatableFaild);
-
-
-            GameEntry.UI.OpenUIForm(AssetUtility.GetUIFormAsset("MenuForm"), "Default");
-
 
             ConnectToServer();
 

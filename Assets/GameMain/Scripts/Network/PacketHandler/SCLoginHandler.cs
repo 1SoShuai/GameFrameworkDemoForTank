@@ -10,7 +10,7 @@ using UnityGameFramework.Runtime;
 namespace Tank
 {
     /// <summary>
-    /// 
+    /// 处理登录回调事件
     /// </summary>
     public class SCLoginHandler : PacketHandlerBase
     {
@@ -21,17 +21,6 @@ namespace Tank
             SCLogin login = Serializer.Deserialize<SCLogin>(sender as Stream);
 
             GameEntry.Event.Fire(this, LoginEventArgs.Create(login.result, login.errorMsg));
-
-            //if (login.result)
-            //{
-            //    Log.Info("success");
-            //    loginSuccess?.Invoke();
-            //}
-            //else
-            //{
-            //    GameEntry.UI.OpenUIForm(AssetUtility.GetUIFormAsset("DialogForm"), "Default");
-            //    Log.Error(login.errorMsg);
-            //}
         }
     }
 }
