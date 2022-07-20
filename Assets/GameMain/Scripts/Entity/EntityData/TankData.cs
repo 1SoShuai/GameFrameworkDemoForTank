@@ -4,8 +4,9 @@ using System.Collections.Generic;
 namespace Tank
 {
     /// <summary>
-    /// 
+    /// 坦克数据类 
     /// </summary>
+    [Serializable]
     public class TankData : EntityData
     {
         public TankData(int entityId, int typeId) : base(entityId, typeId)

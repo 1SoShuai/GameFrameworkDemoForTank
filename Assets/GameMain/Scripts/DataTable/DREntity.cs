@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-07-17 21:12:37.549
+// 生成时间：2022-07-19 01:03:22.186
 //------------------------------------------------------------
 
 using GameFramework;
@@ -45,6 +45,15 @@ namespace Tank
             private set;
         }
 
+        /// <summary>
+        /// 获取实体组名称。
+        /// </summary>
+        public string GroupName
+        {
+            get;
+            private set;
+        }
+
         public override bool ParseDataRow(string dataRowString, object userData)
         {
             string[] columnStrings = dataRowString.Split(DataTableExtension.DataSplitSeparators);
@@ -56,7 +65,9 @@ namespace Tank
             int index = 0;
             index++;
             m_Id = int.Parse(columnStrings[index++]);
+            index++;
             AssetName = columnStrings[index++];
+            GroupName = columnStrings[index++];
 
             GeneratePropertyArray();
             return true;
@@ -70,6 +81,7 @@ namespace Tank
                 {
                     m_Id = binaryReader.Read7BitEncodedInt32();
                     AssetName = binaryReader.ReadString();
+                    GroupName = binaryReader.ReadString();
                 }
             }
 

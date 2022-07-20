@@ -1,4 +1,5 @@
-﻿using GameFramework.Fsm;
+﻿using GameFramework.DataTable;
+using GameFramework.Fsm;
 using GameFramework.Procedure;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,7 @@ namespace Tank
         {
             base.OnEnter(procedureOwner);
 
-            GameEntry.UI.OpenUIForm(AssetUtility.GetUIFormAsset("TankSelectForm"), "Default");
-
-            GameEntry.Entity.ShowEntity<TankLogic>(5, AssetUtility.GetEntityAsset("Karl"), "Tanks",1,new TankData(5,1005) { });
+            GameEntry.UI.OpenUIForm(MappingUtility.TankSelectFormID);
         }
     }
 }

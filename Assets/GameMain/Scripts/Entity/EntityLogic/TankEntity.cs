@@ -5,9 +5,9 @@ using UnityGameFramework.Runtime;
 namespace Tank
 {
     /// <summary>
-    /// 
+    /// 坦克实体
     /// </summary>
-    public class TankLogic : EntityLogic
+    public class TankEntity : EntityLogic
     {
         protected override void OnShow(object userData)
         {
