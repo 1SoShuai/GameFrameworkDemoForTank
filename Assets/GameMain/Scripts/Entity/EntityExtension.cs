@@ -14,6 +14,7 @@ namespace Tank
 
         public static void ShowEntity<T>(this EntityComponent entityComponent, EntityData data) where T : EntityLogic
         {
+            Log.Info("Show entity :" + data.Id + ":" + data.TypeId);
             IDataTable<DREntity> dtEntity = GameEntry.DataTable.GetDataTable<DREntity>();
             DREntity dREntity = dtEntity.GetDataRow(data.TypeId);
 

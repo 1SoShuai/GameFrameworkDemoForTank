@@ -91,7 +91,7 @@ namespace UnityGameFramework.Runtime
         public Transform CachedTransform
         {
             get
-             {
+            {
                 return m_CachedTransform;
             }
         }
