@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-07-25 23:37:04.370
+// 生成时间：2022-07-25 23:37:04.393
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace Tank
 {
     /// <summary>
-    /// 场景配置表。
+    /// 坦克信息表。
     /// </summary>
-    public class DRScene : DataRowBase
+    public class DRTankInfo : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取场景编号。
+        /// 获取编号(与Entity表对应)。
         /// </summary>
         public override int Id
         {
@@ -37,18 +37,27 @@ namespace Tank
         }
 
         /// <summary>
-        /// 获取资源名称。
+        /// 获取攻击力。
         /// </summary>
-        public string AssetName
+        public int Attack
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取背景音乐编号。
+        /// 获取防御力。
         /// </summary>
-        public int BackgroundMusicId
+        public int Defense
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取移动速度。
+        /// </summary>
+        public int Speed
         {
             get;
             private set;
@@ -66,8 +75,9 @@ namespace Tank
             index++;
             m_Id = int.Parse(columnStrings[index++]);
             index++;
-            AssetName = columnStrings[index++];
-            BackgroundMusicId = int.Parse(columnStrings[index++]);
+            Attack = int.Parse(columnStrings[index++]);
+            Defense = int.Parse(columnStrings[index++]);
+            Speed = int.Parse(columnStrings[index++]);
 
             GeneratePropertyArray();
             return true;
@@ -80,8 +90,9 @@ namespace Tank
                 using (BinaryReader binaryReader = new BinaryReader(memoryStream, Encoding.UTF8))
                 {
                     m_Id = binaryReader.Read7BitEncodedInt32();
-                    AssetName = binaryReader.ReadString();
-                    BackgroundMusicId = binaryReader.Read7BitEncodedInt32();
+                    Attack = binaryReader.Read7BitEncodedInt32();
+                    Defense = binaryReader.Read7BitEncodedInt32();
+                    Speed = binaryReader.Read7BitEncodedInt32();
                 }
             }
 

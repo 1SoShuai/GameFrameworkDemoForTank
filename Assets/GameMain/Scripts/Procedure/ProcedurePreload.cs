@@ -24,7 +24,8 @@ namespace Tank
             "Scene",
             "Entity",
             "Music",
-            "UIForm"
+            "UIForm",
+            "TankInfo"
         };
 
         Dictionary<string, bool> loadFlags = new Dictionary<string, bool>();
