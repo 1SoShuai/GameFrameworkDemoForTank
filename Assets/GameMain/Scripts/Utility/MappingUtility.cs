@@ -20,7 +20,11 @@ namespace Tank
         #endregion
 
         #region UIForm Mapping
+        public static int DialogFormID = 101;
+        public static int MenuFormID = 102;
         public static int TankSelectFormID = 103;
+        public static int TwoPlayerFormID = 104;
+        public static int MultPlayerFormID = 105;
         #endregion
     }
 }

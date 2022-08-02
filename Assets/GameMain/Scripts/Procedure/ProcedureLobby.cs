@@ -12,11 +12,36 @@ namespace Tank
     /// </summary>
     public class ProcedureLobby : ProcedureBase
     {
+        private bool startMatching;
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
 
-            GameEntry.UI.OpenUIForm(MappingUtility.TankSelectFormID);
+            startMatching = false;
+            GameEntry.UI.OpenUIForm(MappingUtility.TankSelectFormID, this);
+        }
+
+        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
+        {
+            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+
+            if(startMatching)
+            {
+                ChangeState<ProcedureMatching>(procedureOwner);
+            }
+        }
+
+        protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
+        {
+            base.OnLeave(procedureOwner, isShutdown);
+
+            //GameEntry.UI.CloseUIForm(MappingUtility.TankSelectFormID);
+        }
+
+        public void StartMatching()
+        {
+            startMatching = true;
         }
     }
 }

@@ -49,6 +49,8 @@ namespace Tank
 
         private int iconIndex;
 
+        private ProcedureLobby procedureLobby;
+
         protected override void OnInit(object userData)
         {
             base.OnInit(userData);
@@ -79,6 +81,8 @@ namespace Tank
         {
             base.OnOpen(userData);
 
+            procedureLobby = userData as ProcedureLobby;
+
             prev.onClick.AddListener(OnPrevClick);
             after.onClick.AddListener(OnAfterClick);
             startFight.onClick.AddListener(OnStartFightClick);
@@ -86,7 +90,7 @@ namespace Tank
             ShowTankEntity(tankInfoList[TankIndex].typeId);
         }
 
-       
+
         private void GenerateIcon(ReferenceTankInfo info)
         {
             GameObject icon = GameObject.Instantiate<GameObject>(iconPrefab);
@@ -95,11 +99,6 @@ namespace Tank
             icon.GetComponent<TankIconItem>().index = iconIndex++;
 
             iconItems.Add(icon.GetComponent<TankIconItem>());
-        }
-
-        private void OnConfirmClick()
-        {
-
         }
 
         private void OnPrevClick()
@@ -118,7 +117,8 @@ namespace Tank
 
         private void OnStartFightClick()
         {
-            Debug.Log("Start fight");
+            Debug.Log("Matching other player...");
+            procedureLobby.StartMatching();
         }
 
         protected override void OnClose(bool isShutdown, object userData)
