@@ -20,8 +20,6 @@ namespace Tank
         public bool loginResult;
         public string errorMsg;
 
-        public object userData;
-
         public static LoginEventArgs Create(bool result, string msg)
         {
             LoginEventArgs loginEvent = ReferencePool.Acquire<LoginEventArgs>();
@@ -31,7 +29,6 @@ namespace Tank
 
             return loginEvent;
         }
-
 
         public override void Clear()
         {

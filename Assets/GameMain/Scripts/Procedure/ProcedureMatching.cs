@@ -10,18 +10,39 @@ namespace Tank
     /// </summary>
     public class ProcedureMatching : ProcedureBase
     {
+        int? serialID = 0;
+
+        bool toLobby;
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
 
-            GameEntry.UI.OpenUIForm(MappingUtility.TwoPlayerFormID);
+            toLobby = false;
+
+            serialID = GameEntry.UI.OpenUIForm(MappingUtility.TwoPlayerFormID, this);
+        }
+
+        public void ChangeToLobby()
+        {
+            toLobby = true;
+        }
+
+        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
+        {
+            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+
+            if (toLobby)
+            {
+                ChangeState<ProcedureLobby>(procedureOwner);
+            }
         }
 
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
 
-            GameEntry.UI.CloseUIForm(MappingUtility.TwoPlayerFormID);
+            GameEntry.UI.CloseUIForm((int)serialID);
         }
     }
 }

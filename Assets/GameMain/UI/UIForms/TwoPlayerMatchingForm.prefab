@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 1786103802790363545}
   - component: {fileID: 1786103802790363544}
   m_Layer: 0
-  m_Name: MatchingCenter
+  m_Name: Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,6 +734,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c90f45f3952ebc4ea5f238f10b99a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 564895347833552976}
+  hits: {fileID: 1786103804626868681}
+  btn_exit: {fileID: 1786103802784899781}
 --- !u!1 &1786103802903620234
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +892,7 @@ MonoBehaviour:
   m_Content: {fileID: 1786103802903620235}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -996,7 +999,7 @@ MonoBehaviour:
   m_Content: {fileID: 1786103804737029723}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135

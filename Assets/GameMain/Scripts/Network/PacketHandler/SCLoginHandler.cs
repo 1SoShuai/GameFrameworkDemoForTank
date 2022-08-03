@@ -14,8 +14,6 @@ namespace Tank
     /// </summary>
     public class SCLoginHandler : PacketHandlerBase
     {
-        public static Action loginSuccess;
-
         public override void Handle(object sender, Packet packet)
         {
             SCLogin login = Serializer.Deserialize<SCLogin>(sender as Stream);

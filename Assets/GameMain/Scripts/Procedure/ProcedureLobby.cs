@@ -14,12 +14,14 @@ namespace Tank
     {
         private bool startMatching;
 
+        private int? serialID;
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
 
             startMatching = false;
-            GameEntry.UI.OpenUIForm(MappingUtility.TankSelectFormID, this);
+            serialID = GameEntry.UI.OpenUIForm(MappingUtility.TankSelectFormID, this);
         }
 
         protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -36,7 +38,7 @@ namespace Tank
         {
             base.OnLeave(procedureOwner, isShutdown);
 
-            //GameEntry.UI.CloseUIForm(MappingUtility.TankSelectFormID);
+            GameEntry.UI.CloseUIForm((int)serialID);
         }
 
         public void StartMatching()
